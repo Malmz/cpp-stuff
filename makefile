@@ -1,14 +1,17 @@
 CC=g++
 CFLAGS=-c -Wall
 LDFLAGS=
-SOURCES=test.cpp
+SOURCES=$(shell find . -name *.cpp)
 OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=test
+TARGET=bin/test
 
-all: $(SOURCES) $(EXECUTABLE)
+all: $(SOURCES) $(TARGET)
 
-$(EXECUTABLE): $(OBJECTS)
-    $(CC) $(LDFLAGS) $(OBJECTS) -o $@
+$(TARGET): $(OBJECTS)
+	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 .cpp.o:
-    $(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@
+
+clean:
+	$(RM) $(OBJECTS)
