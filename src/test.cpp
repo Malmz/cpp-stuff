@@ -1,4 +1,5 @@
 #include <iostream>
+#include "testclass.h"
 using namespace std;
 
 void delta() {
@@ -33,11 +34,18 @@ void overloading1(float x) {
 	cout << "Print float: " << x << endl;
 }
 
+int factorial(int n) {
+  if (n==1) {
+    return 1;
+  }
+  else {
+    return n * factorial(n-1);
+  }
+}
+
 
 int main() {
-	int x1 = 15;
-	float x2 = 82.5;
-	overloading1(x1);
-	overloading1(x2);
+    TestClass t;
+	cout << factorial(5) << endl << t.returnHi();
 	return 0;
 }
