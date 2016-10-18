@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ncurses.h>
 #include "testclass.h"
 using namespace std;
 
@@ -43,9 +44,31 @@ int factorial(int n) {
   }
 }
 
+void cursesTest() {
+  char users_name[ 100 ];
+
+  initscr();
+  (void)echo();
+
+  addstr( "What is your name> " );
+  refresh();
+  getnstr( users_name, sizeof( users_name ) - 1 );
+
+  clear();
+
+  printw( "Greetings and salutations %s!\n", users_name );
+  refresh();
+
+  printw( "\n\n\nPress ENTER to quit." );
+  refresh();
+  getnstr( users_name, sizeof( users_name ) - 1 );
+
+  endwin();
+  }
 
 int main() {
-    TestClass t;
-	cout << factorial(5) << endl << t.returnHi();
-	return 0;
+    //TestClass t("testing bob svensson");
+	//cout << factorial(5) << endl << t.returnHi();
+    cursesTest();
+    return 0;
 }
